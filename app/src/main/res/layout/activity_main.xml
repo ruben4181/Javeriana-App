@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
+        tools:context=".LoginActivity"
         android:background="@color/colorPrimary">
 
     <ImageView
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content" android:layout_centerHorizontal="true"
             android:id="@+id/sign_in_login"
             android:layout_marginTop="12dp" android:layout_below="@+id/password_login"
-            android:onClick="testAnimation"/>
+            android:onClick="login"/>
     <TextView
             android:text="¿Olvidaste la contraseña?"
             android:layout_width="wrap_content"
