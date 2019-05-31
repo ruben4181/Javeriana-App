@@ -1,4 +1,5 @@
 package com.javeriana.ruben4181.javeriana.models
 
-data class User(val nombre : String, val apellido : String, val email : String, val periodo: String, val emplid : String,
-                val x_t6519fdd1s5q : String, val token_expire_in : String, val roles : List<String>)
+data class User(var nombre : String, var apellido : String, var email : String, var periodo: String, var emplid : String,
+                var token : String, var token_expire_in : String, var roles : List<String>)
+//x_t6519fdd1s5q

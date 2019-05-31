@@ -5,11 +5,20 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import com.javeriana.ruben4181.javeriana.models.Event
+import com.javeriana.ruben4181.javeriana.models.User
+import com.javeriana.ruben4181.javeriana.services.EventsService
+import com.javeriana.ruben4181.javeriana.services.UserDBService
+import com.javeriana.ruben4181.javeriana.services.UserService
+import com.squareup.picasso.Picasso
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var logoImageView : ImageView
@@ -17,6 +26,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordTextView : TextView
     private lateinit var loginButton : TextView
     private lateinit var forgotPasswordTextView: TextView
+    private lateinit var userService: UserService
+    private lateinit var userDBService: UserDBService
 
     private val animationDuration : Long = 1100
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,11 +38,19 @@ class LoginActivity : AppCompatActivity() {
         passwordTextView = findViewById(R.id.password_login)
         loginButton = findViewById(R.id.sign_in_login)
         forgotPasswordTextView = findViewById(R.id.forgot_password_login)
+        userService= UserService(this)
+        userDBService= UserDBService(this)
+        if(userDBService.isUserLogged()){
+            Toast.makeText(this, "Hola de nuevo!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, HomeActivity::class.java)
+            this.startActivity(intent)
+            this.finish()
+        }
     }
 
     fun login(view: View){
-        val intent = Intent(this, HomeActivity::class.java)
-        this.startActivity(intent)
+        val loginTask = LoginTask(this, this)
+        loginTask.execute(usernameTextView.text.toString(), passwordTextView.text.toString())
     }
 
     override fun onPostResume() {
@@ -74,5 +93,29 @@ class LoginActivity : AppCompatActivity() {
     fun convertDpToPx(context: Context, dp: Float): Float {
         return dp * context.getResources().getDisplayMetrics().density
     }
+    companion object {
+        class LoginTask internal constructor(val context : Context, val activity: AppCompatActivity)
+            : AsyncTask<String, Int, User>() {
 
+            private val userService : UserService = UserService(context)
+
+            override fun doInBackground(vararg params: String?): User? {
+                val user=userService.logginUser(params!![0]!!, params!![1]!!)
+                return user
+            }
+
+            override fun onPostExecute(result: User?) {
+                super.onPostExecute(result)
+                if(!"null".equals(result?.token)) {
+                    Toast.makeText(context, "Bienvenido, "+result?.nombre, Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, HomeActivity::class.java)
+                    context.startActivity(intent)
+                    activity.finish()
+                }else{
+                    Toast.makeText(context, "Lo sentimos, usuario/contraseña indicados no son correctos", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+    }
 }
