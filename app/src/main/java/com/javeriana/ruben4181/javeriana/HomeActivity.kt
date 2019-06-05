@@ -1,6 +1,7 @@
 package com.javeriana.ruben4181.javeriana
 
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -25,7 +26,9 @@ import com.javeriana.ruben4181.javeriana.models.Event
 import com.javeriana.ruben4181.javeriana.models.Subject
 import com.javeriana.ruben4181.javeriana.models.User
 import com.javeriana.ruben4181.javeriana.services.EventsService
+import com.javeriana.ruben4181.javeriana.services.HorariosDBService
 import com.javeriana.ruben4181.javeriana.services.SubjectsService
+import com.javeriana.ruben4181.javeriana.services.UserDBService
 import com.squareup.picasso.Picasso
 import org.json.JSONException
 import org.json.JSONObject
@@ -54,12 +57,22 @@ class HomeActivity : AppCompatActivity(){
 
         drawerLayout = findViewById(R.id.drawer_layout)
 
+        val user = UserDBService(this).getUser()
+
         val navigationView : NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
 
-            displaySelectedScreen(menuItem.itemId)
-
+            if(menuItem.itemId==R.id.nav_menu4){
+                UserDBService(this).clearDB()
+                HorariosDBService(this).clearDB()
+                val intentLogin = Intent(this, LoginActivity::class.java)
+                startActivity(intentLogin)
+                this.finish()
+            }
+            else {
+                displaySelectedScreen(menuItem.itemId)
+            }
             drawerLayout.closeDrawers()
             true
         }
@@ -87,6 +100,10 @@ class HomeActivity : AppCompatActivity(){
         ft.replace(R.id.content_frame, fragment)
         ft.disallowAddToBackStack()
         ft.commit()
+
+        val headerView = navigationView.getHeaderView(0)
+        val usernameTVH = headerView.findViewById<TextView>(R.id.header_user_textview)
+        usernameTVH.text=user.nombre+" "+user.apellido+"\n"+user.emplid
 
     }
 

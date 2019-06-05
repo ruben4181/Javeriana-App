@@ -18,11 +18,12 @@
             app:srcCompat="@drawable/logo" />
 
     <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/header_user_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="8dp"
+            android:gravity="center"
             android:layout_marginTop="8dp"
             android:text="Ruben Dario Vargas Yandy"
             android:textColor="#fff"

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/event_viewer_title" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteY="224dp" android:layout_marginTop="15dp"
+                    android:layout_below="@+id/event_viewer_imageview" android:layout_alignParentStart="true"/>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:scaleType="fitStart"
+                    android:adjustViewBounds="true"
+                    android:layout_height="200dp" app:srcCompat="@drawable/ic_launcher_background"
+                    android:id="@+id/event_viewer_imageview"
+                    tools:layout_editor_absoluteY="8dp"/>
+            <TextView
+                    android:text="Publicado: "
+                    android:textStyle="bold"
+                    android:textColor="#0065b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/event_viewer_postdate"
+                    tools:layout_editor_absoluteY="259dp" tools:layout_editor_absoluteX="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/event_viewer_title"
+                    android:layout_marginStart="7dp" android:layout_alignParentStart="true"/>
+            <TextView
+                    android:text="TextView"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/event_viewer_body"
+                    tools:layout_editor_absoluteY="286dp" tools:layout_editor_absoluteX="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="8dp" android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp" android:layout_below="@+id/event_viewer_postdate"/>
+            <Button
+                    android:text="Volver"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/button"
+                    android:layout_marginTop="9dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/def_light_button"
+                    android:layout_below="@+id/event_viewer_body" android:layout_alignParentStart="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_alignParentEnd="true" android:layout_marginEnd="8dp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

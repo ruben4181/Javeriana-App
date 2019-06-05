@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_alignParentStart="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentTop="true">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="Asignatura"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp" android:layout_alignParentTop="true"
+                    android:id="@+id/subject_list_name"
+                    android:layout_marginTop="10dp"/>
+            <TextView
+                    android:text="Profesor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/subject_list_teacher" android:layout_marginTop="10dp"
+                    android:layout_alignParentStart="true" android:layout_marginStart="15dp"
+                    android:layout_below="@+id/subject_list_name"/>
+            <TextView
+                    android:text="Codigo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/subject_list_code"
+                    android:layout_marginTop="10dp" android:layout_below="@+id/subject_list_teacher"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="15dp"/>
+            <TextView
+                    android:text="Nota: --"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/subject_nota_cardview"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="15dp" android:layout_marginTop="10dp"
+                    android:layout_below="@+id/subject_list_code"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
